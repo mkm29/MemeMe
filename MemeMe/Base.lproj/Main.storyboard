@@ -18,16 +18,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3vB-Wb-R6m">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3vB-Wb-R6m">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Pick" id="661-1K-2JJ"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="HSA-aC-YmL"/>
+                                    <barButtonItem title="Pick" id="r1f-zL-FEE">
+                                        <connections>
+                                            <action selector="pickImageButtonTapped:" destination="FhE-gP-Y5X" id="FZf-pw-osh"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="KVD-9U-xRH"/>
-                                    <barButtonItem systemItem="camera" id="7a1-wD-wpH"/>
+                                    <barButtonItem systemItem="camera" id="7a1-wD-wpH">
+                                        <connections>
+                                            <action selector="pickImageFromCameraButtonTapped:" destination="FhE-gP-Y5X" id="8El-Pk-uOI"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="lJx-lj-pJA"/>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="SelectImage" translatesAutoresizingMaskIntoConstraints="NO" id="TPV-za-23a">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TPV-za-23a">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                             </imageView>
                         </subviews>
@@ -42,13 +51,14 @@
                             <constraint firstItem="TPV-za-23a" firstAttribute="bottom" secondItem="3vB-Wb-R6m" secondAttribute="top" id="xci-ec-QvG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cameraButton" destination="7a1-wD-wpH" id="pCZ-da-YsP"/>
+                        <outlet property="imageView" destination="TPV-za-23a" id="4Nr-4Z-GFF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yXD-kL-s4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="671" y="997"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="SelectImage" width="1080" height="1920"/>
-    </resources>
 </document>
