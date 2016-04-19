@@ -42,8 +42,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.topTextField.delegate = self
         self.bottomTextField.delegate = self
         
-        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        //view.addGestureRecognizer(tap)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -52,15 +52,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
     }
     
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     func keyboardWillShow(notification: NSNotification) {
         if bottomTextField.isFirstResponder() {
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            self.view.frame.origin.y =  getKeyboardHeight(notification) * -1 + (self.navigationController?.toolbar.frame.height)!
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        let start: Int32 = 0
-        self.view.frame.origin.y = CGFloat(start)
+        //let start: Int32 = 0
+        //self.view.frame.origin.y = CGFloat(start)
+        
+        if bottomTextField.isFirstResponder() {
+            self.view.frame.origin.y = 0
+        }
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
