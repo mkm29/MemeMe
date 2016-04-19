@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -21,24 +21,39 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        print("viewDidLoad")
         imagePicker.delegate = self
         
-        let attribs = [
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
+        let memeTextAttributes = [
+            NSStrokeColorAttributeName : UIColor.blackColor(),
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            //NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
             NSFontAttributeName: UIFont(name: "Futura-Medium", size: 30)!,
-            NSStrokeColorAttributeName: UIColor.blackColor(),
-            NSStrokeWidthAttributeName: -2 // Change here
+            NSStrokeWidthAttributeName : -2
         ]
         
-        self.topTextField.attributedText = NSAttributedString(string: "TOP", attributes: attribs)
-        self.bottomTextField.attributedText = NSAttributedString(string: "BOTTOM", attributes: attribs)
+        topTextField.defaultTextAttributes = memeTextAttributes
+        topTextField.textAlignment = .Center
+        topTextField.tag = 1
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(tap)
+        bottomTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.textAlignment = .Center
+        bottomTextField.tag = 2
+        
+        self.topTextField.delegate = self
+        self.bottomTextField.delegate = self
+        
+        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        //view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(animated: Bool) {
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        //unsubscribeFromKeyboardNotifications()
     }
 
 
@@ -68,12 +83,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.text = ""
     }
     
-    func save() {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        if textField.text == "" {
+            if textField.tag == 1 {
+                textField.text = "TOP"
+            } else if textField.tag == 2 {
+                textField.text = "BOTTOM"
+            }
+        }
         
     }
 }
