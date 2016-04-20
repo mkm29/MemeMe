@@ -114,32 +114,6 @@
             </objects>
             <point key="canvasLocation" x="2600" y="1510"/>
         </scene>
-        <!--Profile View Controller-->
-        <scene sceneID="sYM-P1-SR7">
-            <objects>
-                <viewController id="zQc-2y-JKJ" customClass="ProfileViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Djt-gU-6xL"/>
-                        <viewControllerLayoutGuide type="bottom" id="fRR-VL-uq0"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SBa-LC-xtK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ProfilePicture" translatesAutoresizingMaskIntoConstraints="NO" id="G3C-hj-7h0">
-                                <rect key="frame" x="235" y="235" width="130" height="130"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="profileImage" destination="G3C-hj-7h0" id="7zt-0q-L32"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j4T-zu-enB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2600" y="2245"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="77P-2E-BWe">
             <objects>
@@ -163,7 +137,4 @@
             <point key="canvasLocation" x="1829" y="1516"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="ProfilePicture" width="960" height="960"/>
-    </resources>
 </document>

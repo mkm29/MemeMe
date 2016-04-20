@@ -127,10 +127,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        if textField.text == "BOTTOM" || textField.text == "TOP" {
-            textField.text = ""
-        }
-        
+//        if textField.text == "BOTTOM" || textField.text == "TOP" {
+//            textField.text = ""
+//        }
+        textField.text = ""
         
     }
     
@@ -173,10 +173,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func share(sender: AnyObject) {
-        let memedImage = generateMemedImage()
-        let image = UIImage()
-        let controller = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-        self.presentViewController(controller, animated: true, completion: nil)
+        let memedImage = generateMemedImage()       
+        let AVC = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        AVC.completionWithItemsHandler = { activity, success, items, error in
+            if success {
+                self.save()
+            }
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        presentViewController(AVC, animated: true, completion: nil)
     }
     
     @IBAction func discard(sender: AnyObject) {
@@ -185,6 +190,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.shareButton.enabled = false
         self.discardButton.enabled = false
         self.navigationController?.navigationBarHidden = true
+        
+        topTextField.text = "TOP"
+        bottomTextField.text = "BOTTOM"
     }
 }
 
