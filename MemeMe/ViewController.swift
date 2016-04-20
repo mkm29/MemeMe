@@ -16,6 +16,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var discardButton: UIBarButtonItem!
+    
     let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -44,12 +47,31 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        
+        subscribeToKeyboardNotifications()
+        self.shareButton.enabled = false
+        self.discardButton.enabled = false
+        
+        self.navigationController?.navigationBarHidden = true
     }
     
     override func viewWillAppear(animated: Bool) {
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
+    }
+    
+    func subscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    func unsubscribeFromKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name:
+        UIKeyboardWillShowNotification, object: nil)
     }
     
     func dismissKeyboard() {
@@ -63,9 +85,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        //let start: Int32 = 0
-        //self.view.frame.origin.y = CGFloat(start)
-        
         if bottomTextField.isFirstResponder() {
             self.view.frame.origin.y = 0
         }
@@ -75,11 +94,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
         return keyboardSize.CGRectValue().height
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        //unsubscribeFromKeyboardNotifications()
     }
 
 
@@ -100,6 +114,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.contentMode = .ScaleAspectFill
             imageView.image = pickedImage
+            shareButton.enabled = true
+            discardButton.enabled = true
+            self.navigationController?.navigationBarHidden = false
         }
         
         dismissViewControllerAnimated(true, completion: nil)
@@ -131,6 +148,42 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
         }
         
+    }
+    
+    func generateMemedImage() -> UIImage {
+        
+        self.navigationController?.toolbar.hidden = true
+        self.navigationController?.navigationBarHidden = true
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawViewHierarchyInRect(self.view.frame,
+            afterScreenUpdates: true)
+        let memedImage : UIImage =
+        UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        self.navigationController?.toolbar.hidden = false
+        self.navigationController?.navigationBarHidden = false
+        return memedImage
+    }
+    
+    func save() {
+        let meme = Meme(topText: topTextField.text, bottomText: bottomTextField.text, originalImage: self.imageView.image, memeImage: generateMemedImage() )
+    }
+    
+    @IBAction func share(sender: AnyObject) {
+        let meme = Meme(topText: topTextField.text, bottomText: bottomTextField.text, originalImage: self.imageView.image, memeImage: generateMemedImage() )
+        let image = UIImage()
+        let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    @IBAction func discard(sender: AnyObject) {
+        // reset everything and then hide the navbar
+        self.imageView.image = nil
+        self.shareButton.enabled = false
+        self.discardButton.enabled = false
+        self.navigationController?.navigationBarHidden = true
     }
 }
 
