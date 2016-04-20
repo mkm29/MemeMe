@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
+    // MARK: outlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
@@ -19,7 +20,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var discardButton: UIBarButtonItem!
     
+    // MARK: class variables
+    
     let imagePicker = UIImagePickerController()
+    
+    // MARK: Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +70,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         unsubscribeFromKeyboardNotifications()
     }
     
+    
+    // MARK: keyboard methods
+    
     func subscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
@@ -97,6 +105,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
 
+    // MARK: UIImagePickerDelegate methods
+    
     @IBAction func pickImageButtonTapped(sender: AnyObject) {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .PhotoLibrary
@@ -126,6 +136,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // MARK: UITextFieldDelegate methods
+    
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.text = ""
         
@@ -146,6 +158,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         
     }
+    
+    // MARK: Meme-related methods
     
     func generateMemedImage() -> UIImage {
         
