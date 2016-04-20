@@ -127,9 +127,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-//        if textField.text == "BOTTOM" || textField.text == "TOP" {
-//            textField.text = ""
-//        }
         textField.text = ""
         
     }
@@ -193,6 +190,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
+        
+        
     }
 }
 
