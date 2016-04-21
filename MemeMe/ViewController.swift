@@ -24,15 +24,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     let imagePicker = UIImagePickerController()
     
-    // MARK: Lifecycle methods
+    // MARK: setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         imagePicker.delegate = self
         
-        setTextAttributes(bottomTextField)
-        setTextAttributes(topTextField)
+        setupTextField(topTextField, defaultText: "TOP", tag: 1)
+        setupTextField(bottomTextField, defaultText: "BOTTOM", tag: 2)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -45,31 +45,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewWillAppear(animated: Bool) {
         subscribeToKeyboardNotifications()
-        
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
-        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
-    
-    func setTextAttributes(textField: UITextField) {
-        let memeTextAttributes = [
-            NSStrokeColorAttributeName : UIColor.blackColor(),
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            //NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSFontAttributeName: UIFont(name: "Futura-Medium", size: 30)!,
-            NSStrokeWidthAttributeName : -2
-        ]
-        
-        textField.defaultTextAttributes = memeTextAttributes
-        textField.textAlignment = .Center
-        
-        textField.delegate = self
-    }
-    
     
     // MARK: keyboard methods
     
@@ -122,7 +104,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.contentMode = .ScaleAspectFit
+            //imageView.contentMode = .ScaleAspectFit
             imageView.image = pickedImage
             shareButton.enabled = true
             discardButton.enabled = true
@@ -139,8 +121,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: UITextFieldDelegate methods
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        textField.text = ""
-        
+        if textField.text == "BOTTOM" || textField.text == "TOP" {
+            textField.text = ""
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -157,6 +140,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
         }
         
+    }
+    
+    func setupTextField(textField: UITextField, defaultText: String, tag: Int) {
+        textField.delegate = self
+        textField.text = defaultText
+        
+        let memeTextAttributes = [
+            NSStrokeColorAttributeName : UIColor.blackColor(),
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            //NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSFontAttributeName: UIFont(name: "Futura-Medium", size: 30)!,
+            NSStrokeWidthAttributeName : -2
+        ]
+        
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .Center
+        textField.tag = tag
     }
     
     // MARK: Meme-related methods
@@ -207,6 +207,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
+        
+        bottomTextField.resignFirstResponder()
+        topTextField.resignFirstResponder()
         
         
     }
