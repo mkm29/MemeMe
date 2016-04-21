@@ -31,6 +31,31 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Do any additional setup after loading the view, typically from a nib.
         imagePicker.delegate = self
         
+        setTextAttributes(bottomTextField)
+        setTextAttributes(topTextField)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
+        self.shareButton.enabled = false
+        self.discardButton.enabled = false
+        
+        self.navigationController?.navigationBarHidden = true
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        subscribeToKeyboardNotifications()
+        
+        cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
+    }
+    
+    func setTextAttributes(textField: UITextField) {
         let memeTextAttributes = [
             NSStrokeColorAttributeName : UIColor.blackColor(),
             NSForegroundColorAttributeName : UIColor.whiteColor(),
@@ -39,35 +64,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             NSStrokeWidthAttributeName : -2
         ]
         
-        topTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.textAlignment = .Center
-        topTextField.tag = 1
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .Center
         
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.textAlignment = .Center
-        bottomTextField.tag = 2
-        
-        self.topTextField.delegate = self
-        self.bottomTextField.delegate = self
-        
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-        
-        subscribeToKeyboardNotifications()
-        self.shareButton.enabled = false
-        self.discardButton.enabled = false
-        
-        self.navigationController?.navigationBarHidden = true
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
-        
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        unsubscribeFromKeyboardNotifications()
+        textField.delegate = self
     }
     
     

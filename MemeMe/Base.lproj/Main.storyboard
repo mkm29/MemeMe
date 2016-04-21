@@ -52,6 +52,7 @@
                             <constraint firstItem="McD-MA-ULA" firstAttribute="top" secondItem="EgT-gu-Mnk" secondAttribute="bottom" id="8zD-cc-CWU"/>
                             <constraint firstItem="YsY-8O-SXs" firstAttribute="top" secondItem="EgT-gu-Mnk" secondAttribute="bottom" constant="28" id="HqS-KZ-QXL"/>
                             <constraint firstItem="eHp-V4-E1A" firstAttribute="top" secondItem="F3v-kT-aFe" secondAttribute="bottom" constant="28" id="MOj-VI-RFW"/>
+                            <constraint firstItem="YsY-8O-SXs" firstAttribute="top" secondItem="EgT-gu-Mnk" secondAttribute="bottom" constant="28" id="NJH-Ez-2sZ"/>
                             <constraint firstAttribute="trailing" secondItem="F3v-kT-aFe" secondAttribute="trailing" id="NxN-qY-9dV"/>
                             <constraint firstAttribute="trailing" secondItem="McD-MA-ULA" secondAttribute="trailing" id="Pee-Sr-fGF"/>
                             <constraint firstItem="YsY-8O-SXs" firstAttribute="top" secondItem="EgT-gu-Mnk" secondAttribute="bottom" constant="28" id="Rkl-7V-ylq"/>
@@ -71,6 +72,7 @@
                                 <exclude reference="uIT-Ia-hxS"/>
                                 <exclude reference="yxF-rB-fli"/>
                                 <exclude reference="HqS-KZ-QXL"/>
+                                <exclude reference="Rkl-7V-ylq"/>
                                 <exclude reference="n2r-30-iRO"/>
                             </mask>
                         </variation>
@@ -91,7 +93,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="76c-wI-d7K"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="8Gr-jg-Ujt">
-                        <barButtonItem key="leftBarButtonItem" title="Share" id="3u6-Lx-TGC">
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="3u6-Lx-TGC">
                             <connections>
                                 <action selector="share:" destination="wd8-sg-q9I" id="FUU-EF-dor"/>
                             </connections>
