@@ -122,7 +122,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.contentMode = .ScaleAspectFill
+            imageView.contentMode = .ScaleAspectFit
             imageView.image = pickedImage
             shareButton.enabled = true
             discardButton.enabled = true
@@ -192,6 +192,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
             self.dismissViewControllerAnimated(true, completion: nil)
         }
+        
+        // keyboard notifications do not work after sharing so maybe resubscribe to them?
+        subscribeToKeyboardNotifications()
         presentViewController(AVC, animated: true, completion: nil)
     }
     
