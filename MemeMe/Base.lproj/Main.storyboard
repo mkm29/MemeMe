@@ -205,7 +205,7 @@
         <!--Table-->
         <scene sceneID="oHT-Em-NPy">
             <objects>
-                <viewController id="EX8-Lz-JCH" sceneMemberID="viewController">
+                <viewController id="EX8-Lz-JCH" customClass="MemeTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tsz-yu-Y2q"/>
                         <viewControllerLayoutGuide type="bottom" id="vav-0q-vx5"/>
@@ -213,7 +213,42 @@
                     <view key="view" contentMode="scaleToFill" id="x0X-Lr-5oj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1ak-wc-5HD">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MemeTableViewCell" textLabel="KtG-6v-Q9p" style="IBUITableViewCellStyleDefault" id="3uW-pe-yOu">
+                                        <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3uW-pe-yOu" id="riU-NJ-pmX">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KtG-6v-Q9p">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="EX8-Lz-JCH" id="GDk-PC-9E2"/>
+                                    <outlet property="delegate" destination="EX8-Lz-JCH" id="sCf-7w-MuQ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1ak-wc-5HD" firstAttribute="top" secondItem="tsz-yu-Y2q" secondAttribute="bottom" id="IRV-Es-PlL"/>
+                            <constraint firstAttribute="trailing" secondItem="1ak-wc-5HD" secondAttribute="trailing" id="QS6-EK-d66"/>
+                            <constraint firstItem="1ak-wc-5HD" firstAttribute="leading" secondItem="x0X-Lr-5oj" secondAttribute="leading" id="ga4-qX-DIe"/>
+                            <constraint firstItem="vav-0q-vx5" firstAttribute="top" secondItem="1ak-wc-5HD" secondAttribute="bottom" id="u1v-mv-4su"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Table" id="upM-cT-2O6">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="HfA-ax-gq8">
@@ -290,6 +325,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gz1-nO-ZdH"/>
+        <segue reference="bCS-hB-qzU"/>
     </inferredMetricsTieBreakers>
 </document>
