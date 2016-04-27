@@ -186,11 +186,49 @@
                             <constraint firstAttribute="trailing" secondItem="77q-Ch-gOz" secondAttribute="trailing" id="kMb-WL-D8U"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Collection" id="5lx-U5-EJ4"/>
+                    <navigationItem key="navigationItem" title="Collection" id="5lx-U5-EJ4">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="6ay-CW-Qfa">
+                            <connections>
+                                <segue destination="1GU-eP-CuW" kind="modal" id="UaM-yw-3tM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fpO-zC-bPc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2302" y="2069"/>
+        </scene>
+        <!--Meme Detail View Controller-->
+        <scene sceneID="wmG-7b-eQk">
+            <objects>
+                <viewController storyboardIdentifier="MemeDetailViewController" id="CUc-pW-Oe7" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mGW-ID-k7g"/>
+                        <viewControllerLayoutGuide type="bottom" id="BEm-qo-Zht"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R3m-cx-AFV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pOI-js-7vf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BEm-qo-Zht" firstAttribute="top" secondItem="pOI-js-7vf" secondAttribute="bottom" id="Ail-CA-cHb"/>
+                            <constraint firstAttribute="trailing" secondItem="pOI-js-7vf" secondAttribute="trailing" id="oHI-r1-VAB"/>
+                            <constraint firstItem="pOI-js-7vf" firstAttribute="top" secondItem="R3m-cx-AFV" secondAttribute="top" id="oIb-3M-7Se"/>
+                            <constraint firstItem="pOI-js-7vf" firstAttribute="leading" secondItem="R3m-cx-AFV" secondAttribute="leading" id="oaV-3X-PCx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="pOI-js-7vf" id="h7P-G5-hcy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zrw-gY-A8A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2790" y="2069"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="77P-2E-BWe">
@@ -269,7 +307,13 @@
                             <constraint firstItem="Kgd-rF-ZJM" firstAttribute="top" secondItem="omN-C4-Ddr" secondAttribute="bottom" id="zlG-ce-X5c"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Table" id="Czl-VS-fcf"/>
+                    <navigationItem key="navigationItem" title="Table" id="Czl-VS-fcf">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="L3v-E6-0rs">
+                            <connections>
+                                <segue destination="1GU-eP-CuW" kind="modal" id="KAI-f0-yxb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9nk-2e-wzH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -295,4 +339,7 @@
             <point key="canvasLocation" x="1883" y="2739"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="UaM-yw-3tM"/>
+    </inferredMetricsTieBreakers>
 </document>
