@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Meme-->
@@ -129,7 +130,7 @@
         <!--Collection-->
         <scene sceneID="HNX-VZ-iTR">
             <objects>
-                <viewController id="cZ9-lZ-lj5" sceneMemberID="viewController">
+                <viewController id="cZ9-lZ-lj5" customClass="MemeCollectionView" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="av6-mh-0sR"/>
                         <viewControllerLayoutGuide type="bottom" id="VD1-W8-iWY"/>
@@ -137,7 +138,54 @@
                     <view key="view" contentMode="scaleToFill" id="jtA-xr-qax">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5oJ-yJ-k8X">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vLR-8K-HMp">
+                                    <size key="itemSize" width="96" height="87"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="MemeCollectionCell" id="HR0-k2-Rzg" customClass="MemeCollectionViewCell" customModule="MemeMe" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="64" width="140" height="140"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MsS-Ys-dnd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottomMargin" secondItem="MsS-Ys-dnd" secondAttribute="bottom" constant="-8" id="3nx-3Y-Mah"/>
+                                            <constraint firstItem="MsS-Ys-dnd" firstAttribute="leading" secondItem="HR0-k2-Rzg" secondAttribute="leadingMargin" constant="-8" id="lc0-F1-U8s"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="MsS-Ys-dnd" secondAttribute="trailing" constant="-8" id="yRW-fY-W0d"/>
+                                            <constraint firstItem="MsS-Ys-dnd" firstAttribute="top" secondItem="HR0-k2-Rzg" secondAttribute="topMargin" constant="-8" id="ynp-Np-0tA"/>
+                                        </constraints>
+                                        <size key="customSize" width="140" height="140"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="MsS-Ys-dnd" id="Jtg-YK-xIi"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="cZ9-lZ-lj5" id="jBI-mv-XTW"/>
+                                    <outlet property="delegate" destination="cZ9-lZ-lj5" id="YyC-4v-AbQ"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5oJ-yJ-k8X" firstAttribute="top" secondItem="av6-mh-0sR" secondAttribute="bottom" id="JTT-m8-kYM"/>
+                            <constraint firstItem="5oJ-yJ-k8X" firstAttribute="leading" secondItem="jtA-xr-qax" secondAttribute="leading" id="c9t-NU-jkY"/>
+                            <constraint firstItem="VD1-W8-iWY" firstAttribute="top" secondItem="5oJ-yJ-k8X" secondAttribute="bottom" id="oLs-xl-5CS"/>
+                            <constraint firstAttribute="trailing" secondItem="5oJ-yJ-k8X" secondAttribute="trailing" id="sn1-yI-YTX"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Collection" id="NQ6-k0-E7Y">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="jgX-W5-JDy">
@@ -146,6 +194,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="5oJ-yJ-k8X" id="2wK-gY-zyL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJt-m8-BX7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -239,6 +290,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bCS-hB-qzU"/>
+        <segue reference="gz1-nO-ZdH"/>
     </inferredMetricsTieBreakers>
 </document>
