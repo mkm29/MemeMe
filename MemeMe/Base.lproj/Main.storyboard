@@ -196,6 +196,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="5oJ-yJ-k8X" id="2wK-gY-zyL"/>
+                        <outlet property="flowLayout" destination="vLR-8K-HMp" id="Kfb-hB-0XI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJt-m8-BX7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -328,6 +329,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bCS-hB-qzU"/>
+        <segue reference="gz1-nO-ZdH"/>
     </inferredMetricsTieBreakers>
 </document>
