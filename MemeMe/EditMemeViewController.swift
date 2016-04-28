@@ -11,9 +11,13 @@ import UIKit
 class EditMemeViewController: UIViewController, UITextFieldDelegate {
     var meme: Meme!
     
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var topText: UITextField!
     @IBOutlet weak var bottomText: UITextField!
+    
+    var memeIndex: Int!
     
     
     override func viewDidLoad() {
@@ -38,9 +42,14 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate {
             //topText.text = meme.topText
             //bottomText.text = meme.bottomText
             
-            let saveButton = UIBarButtonItem()
-            saveButton.title = "Save"
-            self.navigationItem.rightBarButtonItem = saveButton
+            let mySelector: Selector = #selector(EditMemeViewController.save(_:))
+            
+            let rightNavigationBarItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: mySelector)
+            navigationItem.rightBarButtonItem = rightNavigationBarItem
+//            let saveButton = UIBarButtonItem()
+//            saveButton.title = "Save"
+            print("memeIndex: \(memeIndex)")
+            //saveButton.addTarget(self, action: #selector(myClass.pressed(_:)), forControlEvents: .TouchUpInside)
         }
     }
     
@@ -106,5 +115,56 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate {
         textField.defaultTextAttributes = memeTextAttributes
         textField.textAlignment = .Center
         textField.tag = tag
+    }
+    
+    // MARK: Meme-related methods
+    
+    func generateMemedImage() -> UIImage {
+        
+        self.navigationController?.toolbar.hidden = true
+        self.navigationController?.navigationBarHidden = true
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawViewHierarchyInRect(self.view.frame,
+                                     afterScreenUpdates: true)
+        let memedImage : UIImage =
+            UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        self.navigationController?.toolbar.hidden = false
+        self.navigationController?.navigationBarHidden = false
+        return memedImage
+    }
+    
+//    func save() -> Meme {
+//        // need to create a new Meme obkject
+//        let meme = Meme(topText: topText.text, bottomText: bottomText.text, originalImage: self.imageView.image, memeImage: generateMemedImage() )
+//        
+//        // Add it to the memes array in the Application Delegate
+//        let object = UIApplication.sharedApplication().delegate
+//        let appDelegate = object as! AppDelegate
+//        
+//        
+//        appDelegate.memes[memeIndex] = meme
+//        //appDelegate.memes.append(meme)
+//        
+//        return meme
+//    }
+    
+    func test(sender: UIBarButtonItem) {
+        print("test")
+    }
+    
+    func save(sender: UIBarButtonItem) {
+        print("save")
+        let meme = Meme(topText: topText.text, bottomText: bottomText.text, originalImage: self.imageView.image, memeImage: generateMemedImage() )
+        
+        // Add it to the memes array in the Application Delegate
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        
+        
+        appDelegate.memes[memeIndex] = meme
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

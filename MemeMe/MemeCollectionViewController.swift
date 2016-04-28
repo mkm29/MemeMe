@@ -50,6 +50,7 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDelegate, 
         
         let meme: Meme = appDelegate.memes[indexPath.row]
         detailViewController.meme = meme
+        detailViewController.memeIndex = indexPath.row
         //detailViewController.imageView.image = meme.memeImage
         self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(detailViewController, animated: true)
