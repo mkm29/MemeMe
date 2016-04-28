@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Meme-->
@@ -217,8 +218,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BEm-qo-Zht" firstAttribute="top" secondItem="pOI-js-7vf" secondAttribute="bottom" id="Ail-CA-cHb"/>
+                            <constraint firstItem="pOI-js-7vf" firstAttribute="top" secondItem="R3m-cx-AFV" secondAttribute="topMargin" id="gsH-Sj-rmm"/>
                             <constraint firstAttribute="trailing" secondItem="pOI-js-7vf" secondAttribute="trailing" id="oHI-r1-VAB"/>
-                            <constraint firstItem="pOI-js-7vf" firstAttribute="top" secondItem="R3m-cx-AFV" secondAttribute="top" id="oIb-3M-7Se"/>
                             <constraint firstItem="pOI-js-7vf" firstAttribute="leading" secondItem="R3m-cx-AFV" secondAttribute="leading" id="oaV-3X-PCx"/>
                         </constraints>
                     </view>
@@ -297,6 +298,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="w4k-Gc-B7D" id="VFd-ci-Ci3"/>
+                                    <outlet property="delegate" destination="w4k-Gc-B7D" id="xAU-qp-Agi"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -314,6 +319,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Kgd-rF-ZJM" id="YxO-H8-jQV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9nk-2e-wzH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -340,6 +348,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UaM-yw-3tM"/>
+        <segue reference="KAI-f0-yxb"/>
     </inferredMetricsTieBreakers>
 </document>
