@@ -8,7 +8,7 @@
         <!--Meme-->
         <scene sceneID="ZFv-lW-jV4">
             <objects>
-                <viewController id="wd8-sg-q9I" customClass="ViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wd8-sg-q9I" customClass="MemeViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EgT-gu-Mnk"/>
                         <viewControllerLayoutGuide type="bottom" id="eHp-V4-E1A"/>
@@ -187,7 +187,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Collection" id="5lx-U5-EJ4">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="6ay-CW-Qfa">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="6ay-CW-Qfa">
                             <connections>
                                 <segue destination="1GU-eP-CuW" kind="modal" id="UaM-yw-3tM"/>
                             </connections>
@@ -316,7 +316,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Table" id="Czl-VS-fcf">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="L3v-E6-0rs">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="L3v-E6-0rs">
                             <connections>
                                 <segue destination="1GU-eP-CuW" kind="modal" id="KAI-f0-yxb"/>
                             </connections>

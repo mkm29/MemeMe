@@ -9,31 +9,29 @@
 import UIKit
 
 class MemeTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
     
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    @IBOutlet weak var tableView: UITableView!
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return appDelegate.memes.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableCell")
         
+        let meme: Meme = appDelegate.memes[indexPath.row]
+        cell?.imageView?.image = meme.memeImage
+        cell?.textLabel?.text = "\(meme.topText) \(meme.bottomText)"
         return cell!
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
+        _ = detailViewController.view
+        
+        let meme: Meme = appDelegate.memes[indexPath.row]
+        detailViewController.imageView.image = meme.memeImage
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
-    */
-
 }

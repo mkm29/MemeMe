@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     // MARK: outlets
     @IBOutlet weak var imageView: UIImageView!
@@ -34,7 +34,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         setupTextField(topTextField, defaultText: "TOP", tag: 1)
         setupTextField(bottomTextField, defaultText: "BOTTOM", tag: 2)
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MemeViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
         self.shareButton.enabled = false
@@ -56,8 +56,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: keyboard methods
     
     func subscribeToKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     func unsubscribeFromKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self, name:
@@ -90,14 +90,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: UIImagePickerDelegate methods
     
     @IBAction func pickImageButtonTapped(sender: AnyObject) {
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .PhotoLibrary
-        
-        presentViewController(imagePicker, animated: true, completion: nil)
+        pickImage(.PhotoLibrary)
     }
     @IBAction func pickImageFromCameraButtonTapped(sender: AnyObject) {
+        pickImage(.Camera)
+    }
+    
+    func pickImage(source: UIImagePickerControllerSourceType) {
         imagePicker.allowsEditing = false
-        imagePicker.sourceType = .Camera
+        imagePicker.sourceType = source
         
         presentViewController(imagePicker, animated: true, completion: nil)
     }
