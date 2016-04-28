@@ -194,7 +194,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="flowLayout" destination="Jhk-TI-Kb8" id="eOl-f9-Q3Z"/>
+                        <outlet property="collectionView" destination="77q-Ch-gOz" id="K6W-li-CEZ"/>
+                        <outlet property="flowLayout" destination="Jhk-TI-Kb8" id="HmP-6b-QdI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fpO-zC-bPc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -322,7 +323,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="Kgd-rF-ZJM" id="YxO-H8-jQV"/>
+                        <outlet property="tableView" destination="Kgd-rF-ZJM" id="rZd-2S-IcD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9nk-2e-wzH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -350,6 +351,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UaM-yw-3tM"/>
+        <segue reference="KAI-f0-yxb"/>
     </inferredMetricsTieBreakers>
 </document>
