@@ -215,15 +215,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pOI-js-7vf">
-                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="518"/>
                             </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Qw-vI-4BA">
+                                <rect key="frame" x="0.0" y="518" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="2Vg-sZ-iXk"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Delete" id="3ul-sC-kk1">
+                                        <connections>
+                                            <action selector="deleteMeme:" destination="CUc-pW-Oe7" id="XRe-02-oeT"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="lkh-cF-KC9"/>
+                                    <barButtonItem systemItem="edit" id="12l-sk-m7Q">
+                                        <connections>
+                                            <action selector="editMeme:" destination="CUc-pW-Oe7" id="HCM-Bb-VxK"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="BEm-qo-Zht" firstAttribute="top" secondItem="pOI-js-7vf" secondAttribute="bottom" id="Ail-CA-cHb"/>
+                            <constraint firstAttribute="trailing" secondItem="7Qw-vI-4BA" secondAttribute="trailing" id="MhL-ih-Hme"/>
                             <constraint firstItem="pOI-js-7vf" firstAttribute="top" secondItem="mGW-ID-k7g" secondAttribute="bottom" constant="24" id="efV-b8-VZF"/>
+                            <constraint firstItem="7Qw-vI-4BA" firstAttribute="leading" secondItem="R3m-cx-AFV" secondAttribute="leading" id="huM-uM-jJd"/>
                             <constraint firstAttribute="trailing" secondItem="pOI-js-7vf" secondAttribute="trailing" id="oHI-r1-VAB"/>
                             <constraint firstItem="pOI-js-7vf" firstAttribute="leading" secondItem="R3m-cx-AFV" secondAttribute="leading" id="oaV-3X-PCx"/>
+                            <constraint firstItem="pOI-js-7vf" firstAttribute="bottom" secondItem="7Qw-vI-4BA" secondAttribute="bottom" id="uVv-YZ-iNL"/>
+                            <constraint firstAttribute="bottom" secondItem="7Qw-vI-4BA" secondAttribute="bottom" constant="6" id="umB-s8-BZy"/>
                         </constraints>
                     </view>
                     <connections>
@@ -330,6 +352,79 @@
             </objects>
             <point key="canvasLocation" x="2302" y="2739"/>
         </scene>
+        <!--Edit Meme View Controller-->
+        <scene sceneID="FzN-bB-gSt">
+            <objects>
+                <viewController storyboardIdentifier="EditMemeViewController" id="uur-lu-YcY" customClass="EditMemeViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Naj-2a-JbQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xfi-cw-tgb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GV7-oQ-PkG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C02-i2-UtU">
+                                <rect key="frame" x="0.0" y="48" width="320" height="520"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jJ1-rQ-MLh" userLabel="Top Text">
+                                <rect key="frame" x="0.0" y="82" width="320" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="jEk-BL-RC0"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="TOP">
+                                        <attributes>
+                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="48" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QEw-tL-MeB" userLabel="Bottom Text">
+                                <rect key="frame" x="0.0" y="477" width="320" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="pya-0l-MCM"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="BOTTOM">
+                                        <attributes>
+                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="48" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="C02-i2-UtU" firstAttribute="leading" secondItem="GV7-oQ-PkG" secondAttribute="leading" id="9k2-gM-vru"/>
+                            <constraint firstAttribute="trailing" secondItem="QEw-tL-MeB" secondAttribute="trailing" id="IQ3-4q-97e"/>
+                            <constraint firstItem="QEw-tL-MeB" firstAttribute="leading" secondItem="GV7-oQ-PkG" secondAttribute="leading" id="Jx6-hP-Jwu"/>
+                            <constraint firstItem="Xfi-cw-tgb" firstAttribute="top" secondItem="QEw-tL-MeB" secondAttribute="bottom" constant="35" id="MJc-wY-Cnb"/>
+                            <constraint firstItem="Xfi-cw-tgb" firstAttribute="top" secondItem="C02-i2-UtU" secondAttribute="bottom" id="SDH-s1-c6W"/>
+                            <constraint firstAttribute="trailing" secondItem="C02-i2-UtU" secondAttribute="trailing" id="TQ1-h0-K7u"/>
+                            <constraint firstItem="jJ1-rQ-MLh" firstAttribute="top" secondItem="Naj-2a-JbQ" secondAttribute="bottom" constant="62" id="cTm-dC-ZMI"/>
+                            <constraint firstAttribute="trailing" secondItem="jJ1-rQ-MLh" secondAttribute="trailing" id="eQp-Vx-7r3"/>
+                            <constraint firstItem="jJ1-rQ-MLh" firstAttribute="leading" secondItem="GV7-oQ-PkG" secondAttribute="leading" id="h6l-IM-lhe"/>
+                            <constraint firstItem="C02-i2-UtU" firstAttribute="top" secondItem="Naj-2a-JbQ" secondAttribute="bottom" constant="28" id="qAA-c4-93H"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="8qP-8s-G5Y"/>
+                    <connections>
+                        <outlet property="bottomText" destination="QEw-tL-MeB" id="JSW-gQ-tC8"/>
+                        <outlet property="imageView" destination="C02-i2-UtU" id="jcV-ed-dYK"/>
+                        <outlet property="topText" destination="jJ1-rQ-MLh" id="lZV-Gh-cEQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rRb-Bp-3af" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3190" y="2069"/>
+        </scene>
         <!--Table-->
         <scene sceneID="EvZ-9n-kKh">
             <objects>
@@ -351,6 +446,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KAI-f0-yxb"/>
+        <segue reference="UaM-yw-3tM"/>
     </inferredMetricsTieBreakers>
 </document>

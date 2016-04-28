@@ -19,6 +19,7 @@
 		AF7873131CD1A447009A5290 /* MemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7873121CD1A447009A5290 /* MemeTableViewController.swift */; };
 		AFC6E0541CD153A10003C6A8 /* MemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC6E0531CD153A10003C6A8 /* MemeCollectionViewCell.swift */; };
 		AFC6E0581CD1568F0003C6A8 /* MemeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC6E0571CD1568F0003C6A8 /* MemeDetailViewController.swift */; };
+		AFE54D0C1CD27B8A002F4036 /* EditMemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE54D0B1CD27B8A002F4036 /* EditMemeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		AF7873121CD1A447009A5290 /* MemeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeTableViewController.swift; sourceTree = "<group>"; };
 		AFC6E0531CD153A10003C6A8 /* MemeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeCollectionViewCell.swift; sourceTree = "<group>"; };
 		AFC6E0571CD1568F0003C6A8 /* MemeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeDetailViewController.swift; sourceTree = "<group>"; };
+		AFE54D0B1CD27B8A002F4036 /* EditMemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMemeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				2A8740251CB0414C001A5801 /* AppDelegate.swift */,
 				2A8740271CB0414C001A5801 /* MemeViewController.swift */,
 				2A8740291CB0414C001A5801 /* Main.storyboard */,
+				AFE54D0B1CD27B8A002F4036 /* EditMemeViewController.swift */,
 				AF7873121CD1A447009A5290 /* MemeTableViewController.swift */,
 				AFC6E0571CD1568F0003C6A8 /* MemeDetailViewController.swift */,
 				2ADF59F61CC14EF800B561A8 /* Models */,
@@ -279,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFE54D0C1CD27B8A002F4036 /* EditMemeViewController.swift in Sources */,
 				AFC6E0541CD153A10003C6A8 /* MemeCollectionViewCell.swift in Sources */,
 				AF7873131CD1A447009A5290 /* MemeTableViewController.swift in Sources */,
 				2ADF59F51CC14EF000B561A8 /* Meme.swift in Sources */,
