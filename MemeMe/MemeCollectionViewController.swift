@@ -29,6 +29,7 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDelegate, 
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
+        self.tabBarController?.tabBar.hidden = false
         collectionView.reloadData()
         
     }
@@ -54,5 +55,10 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDelegate, 
         //detailViewController.imageView.image = meme.memeImage
         self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    @IBAction func addMeme(sender: AnyObject) {
+        let memeNavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("MemeNavigationController") as! UINavigationController
+        self.navigationController?.popToRootViewControllerAnimated(true)
+        presentViewController(memeNavigationController, animated: true, completion: nil)
     }
 }

@@ -18,7 +18,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var bottomTextField: UITextField!
     
     @IBOutlet weak var shareButton: UIBarButtonItem!
-    @IBOutlet weak var discardButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     // MARK: class variables
     
@@ -38,19 +38,34 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         view.addGestureRecognizer(tap)
         
         self.shareButton.enabled = false
-        self.discardButton.enabled = false
         
-        self.navigationController?.navigationBarHidden = true
+        setupCancelButton()
+        
+        
+        resetMeme()
     }
     
     override func viewWillAppear(animated: Bool) {
         subscribeToKeyboardNotifications()
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        setupCancelButton()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
+    }
+    
+    func setupCancelButton() {
+        self.navigationController?.navigationBarHidden = false
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if appDelegate.memes.count > 0 {
+            cancelButton.enabled = true
+            //self.navigationController?.navigationBarHidden = false
+        } else {
+            cancelButton.enabled = false
+            //self.navigationController?.navigationBarHidden = true
+        }
     }
     
     // MARK: keyboard methods
@@ -108,7 +123,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             //imageView.contentMode = .ScaleAspectFit
             imageView.image = pickedImage
             shareButton.enabled = true
-            discardButton.enabled = true
             self.navigationController?.navigationBarHidden = false
         }
         
@@ -205,11 +219,20 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         presentViewController(AVC, animated: true, completion: nil)
     }
     
+    
+    @IBAction func cancelButton(sender: AnyObject) {
+        let memeTabBarController = self.storyboard?.instantiateViewControllerWithIdentifier("SentMemesTabBarController") as! UITabBarController
+        presentViewController(memeTabBarController, animated: true, completion: nil)
+    }
+    
     @IBAction func discard(sender: AnyObject) {
+        resetMeme()
+    }
+    
+    func resetMeme() {
         // reset everything and then hide the navbar
         self.imageView.image = nil
         self.shareButton.enabled = false
-        self.discardButton.enabled = false
         self.navigationController?.navigationBarHidden = true
         
         topTextField.text = "TOP"
@@ -217,8 +240,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         bottomTextField.resignFirstResponder()
         topTextField.resignFirstResponder()
-        
-        
     }
 }
 

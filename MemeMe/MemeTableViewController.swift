@@ -13,6 +13,12 @@ class MemeTableViewController: UIViewController, UITableViewDelegate, UITableVie
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet weak var tableView: UITableView!
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tabBarController?.tabBar.hidden = false
+        tableView.reloadData()
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return appDelegate.memes.count
     }
@@ -32,6 +38,13 @@ class MemeTableViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let meme: Meme = appDelegate.memes[indexPath.row]
         detailViewController.imageView.image = meme.memeImage
+        detailViewController.memeIndex = indexPath.row
+        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    @IBAction func addMeme(sender: AnyObject) {
+        let memeNavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("MemeNavigationController") as! UINavigationController
+        self.navigationController?.popToRootViewControllerAnimated(true)
+        presentViewController(memeNavigationController, animated: true, completion: nil)
     }
 }
